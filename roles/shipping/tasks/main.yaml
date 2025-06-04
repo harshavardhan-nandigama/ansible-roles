@@ -23,7 +23,7 @@
       - /app/db/app-user.sql
       - /app/db/master-data.sql
 
-      - maven: maven setup
+      - maven: systemd setup
         include_role:
           name: common
           tasks_from: systemd
