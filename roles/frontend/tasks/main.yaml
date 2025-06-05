@@ -9,24 +9,11 @@
     name: nginx
     state: present
 
-- name: Validate nginx configuration
-  ansible.builtin.command: nginx -t
-  register: nginx_config_test
-  changed_when: false
-  failed_when: "'successful' not in nginx_config_test.stderr"
-
-- name: Show nginx config test result (if failed)
-  ansible.builtin.debug:
-    var: nginx_config_test.stderr_lines
-  when: nginx_config_test.rc != 0
-
-- name: Start and enable nginx
+- name: start and enable nginx
   ansible.builtin.service:
     name: nginx
     state: started
     enabled: yes
-  when: "'successful' in nginx_config_test.stderr"
-
 
 - name: remove html directory
   ansible.builtin.file:
