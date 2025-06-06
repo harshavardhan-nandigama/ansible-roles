@@ -19,7 +19,8 @@
     state: present
 
 - name: check products loaded or not
-  ansible.builtin.command: mongosh --host mongodb.harshavn24.site --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
+  ansible.builtin.command: mongosh --host mongodb.harshavn24.site --eval 'db.catalogue.products.count()'
+
   register: catalogue_output
   # ignore_errors: true
   # ignore_unreachable: true
