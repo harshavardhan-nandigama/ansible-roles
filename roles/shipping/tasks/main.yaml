@@ -13,7 +13,7 @@
         name: common
         tasks_from: data
 
-    - maven: systemd setup
+    - name: systemd setup
       include_role:
         name: common
         tasks_from: systemd
