@@ -3,24 +3,11 @@
     name: mysql-server
     state: installed
 
-- name: Start and enable MySQL service
-  ansible.builtin.service:
+- name: start mysql server
+  ansible.builtin.systemd_service:
     name: mysqld
     state: started
     enabled: yes
 
-- name: Install boto3 and botocore using pip
-  ansible.builtin.pip:
-    name: "{{ item }}"
-    executable: pip3.9
-  loop:
-    - boto3
-    - botocore
-
-- name: Set MySQL root password using mysql_secure_installation
-  ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ MYSQL_ROOT_PASSWORD }}"
-  args:
-    creates: /var/lib/mysql/.root_pass_set
-  register: root_pass_result
-  notify:
-    - Mark root password as set
+- name: setup root password
+  ansible.builtin.command: mysql_secure_installtion --set-root-pass RoboShop@!
