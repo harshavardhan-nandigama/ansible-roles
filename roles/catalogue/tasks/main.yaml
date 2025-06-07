@@ -44,7 +44,7 @@
 - name: app setup
   tags: 
   - deployment
-  include_rule:
+  include_rule: app-setup
     name: common
     tasks_from: deployment
 
