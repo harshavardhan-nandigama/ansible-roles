@@ -20,7 +20,6 @@
 
 - name: check products loaded or not
   ansible.builtin.command: mongosh --host mongodb.harshavn24.site --eval 'db.catalogue.products.count()'
-
   register: catalogue_output
   # ignore_errors: true
   # ignore_unreachable: true
@@ -32,7 +31,7 @@
   # ignore_unreachable: true
 
 - name: load products
-  ansible.builtin.shell: mongosh --host mongodb.daws84s.site < /app/db/master-data.js
+  ansible.builtin.shell: mongosh --host mongodb.harshavn24.site < /app/db/master-data.js
   when: catalogue_output.stdout | int < 0
   # ignore_errors: true
   # ignore_unreachable: true
@@ -41,4 +40,12 @@
   include_role:
     name: common
     tasks_from: systemd.yaml
+
+- name: app setup
+  tags: 
+  - deployment
+  include_rule:
+    name: common
+    tasks_from: deployment
+
 
