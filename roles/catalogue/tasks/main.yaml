@@ -42,11 +42,11 @@
     name: common
     tasks_from: systemd.yaml
 
-#- name: app setup
- # tags: 
-  #- deployment
-  #include_rule: app-setup
-   # name: common
-    #tasks_from: deployment
+- name: app setup
+  tags: 
+  - deployment
+  include_rule:  
+    name: common
+    tasks_from: deployment
 
 
