@@ -3,14 +3,14 @@
     name: "{{ component }}"
     state: stopped
   
-- name: remove /app directrory
+- name: remove /app directory
   ansible.builtin.file:
     state: absent
     path: /app
 
-- name: create /app directrory
+- name: create /app directory
   ansible.builtin.file:
-    state: directrory
+    state: directory
     path: /app
 
 - name: download application
